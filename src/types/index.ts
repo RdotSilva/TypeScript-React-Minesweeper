@@ -10,3 +10,9 @@ export enum CellValue {
   Eight,
   Bomb,
 }
+
+export enum CellState {
+  Open,
+  Visible,
+  Flagged,
+}
