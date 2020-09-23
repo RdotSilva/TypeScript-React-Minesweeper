@@ -16,3 +16,5 @@ export enum CellState {
   Visible,
   Flagged,
 }
+
+export type Cell = { value: CellValue; state: CellState };
