@@ -24,17 +24,12 @@
 }
 
 .Face {
-  width: 52px;
-  height: 52px;
-  font-size: 35px;
-  border-width: 4px;
-  border-style: solid;
-  border-right-color: #7b7b7b;
-  border-bottom-color: #7b7b7b;
-  border-left-color: white;
-  border-top-color: white;
-  display: flex;
-  justify-content: center;
+  @include borders;
   align-items: center;
   cursor: pointer;
+  display: flex;
+  font-size: 35px;
+  height: 52px;
+  justify-content: center;
+  width: 52px;
 }
