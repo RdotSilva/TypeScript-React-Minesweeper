@@ -9,8 +9,12 @@ interface ButtonProps {
   value: CellValue;
 }
 
-const Button: React.FC<ButtonProps> = () => {
-  return <div className="Button"></div>;
+const Button: React.FC<ButtonProps> = ({ row, col, state, value }) => {
+  return (
+    <div className={`Button ${state === CellState.Visible ? "visible" : ""}`}>
+      {renderContent()}
+    </div>
+  );
 };
 
 export default Button;
