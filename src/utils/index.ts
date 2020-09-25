@@ -1,8 +1,9 @@
-import { MAX_COLS, MAX_ROWS } from "../constants";
+import { MAX_COLS, MAX_ROWS, NO_OF_BOMBS } from "../constants";
 import { Cell, CellState, CellValue } from "../types";
 
 export const generateCells = (): Cell[][] => {
-  const cells: Cell[][] = [];
+  let cells: Cell[][] = [];
+  let bombsPlaced = 0;
 
   for (let row = 0; row < MAX_ROWS; row++) {
     cells.push([]);
@@ -11,6 +12,29 @@ export const generateCells = (): Cell[][] => {
         value: CellValue.None,
         state: CellState.Open,
       });
+    }
+  }
+
+  // Generate cells containing bombs
+  while (bombsPlaced < NO_OF_BOMBS) {
+    const randomRow = Math.floor(Math.random() * MAX_ROWS);
+    const randomCol = Math.floor(Math.random() * MAX_COLS);
+    const currentCell = cells[randomRow][randomCol];
+
+    if (currentCell.value !== CellValue.Bomb) {
+      cells = cells.map((row, rowIndex) =>
+        row.map((cell, colIndex) => {
+          if (randomRow === rowIndex && randomCol === colIndex) {
+            return {
+              ...cell,
+              value: CellValue.Bomb,
+            };
+          }
+
+          return cell;
+        })
+      );
+      bombsPlaced++;
     }
   }
 
