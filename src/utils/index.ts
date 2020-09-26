@@ -54,7 +54,8 @@ export const generateCells = (): Cell[][] => {
           ? cells[rowIndex - 1][colIndex + 1]
           : null;
       const leftBomb = colIndex > 0 ? cells[rowIndex][colIndex - 1] : null;
-      const rightBomb = colIndex < MAX_COLS - 1 ? cells[rowIndex + 1] : null;
+      const rightBomb =
+        colIndex < MAX_COLS - 1 ? cells[rowIndex][colIndex + 1] : null;
       const bottomLeftBomb =
         rowIndex < MAX_ROWS - 1 && colIndex > 0
           ? cells[rowIndex + 1][colIndex - 1]
@@ -65,6 +66,31 @@ export const generateCells = (): Cell[][] => {
         rowIndex < MAX_ROWS - 1 && colIndex < MAX_COLS - 1
           ? cells[rowIndex + 1][colIndex + 1]
           : null;
+
+      if (topLeftBomb?.value === CellValue.Bomb) {
+        numberOfBombs++;
+      }
+      if (topBomb?.value === CellValue.Bomb) {
+        numberOfBombs++;
+      }
+      if (topRightBomb?.value === CellValue.Bomb) {
+        numberOfBombs++;
+      }
+      if (leftBomb?.value === CellValue.Bomb) {
+        numberOfBombs++;
+      }
+      if (rightBomb?.value === CellValue.Bomb) {
+        numberOfBombs++;
+      }
+      if (bottomLeftBomb?.value === CellValue.Bomb) {
+        numberOfBombs++;
+      }
+      if (bottomBomb?.value === CellValue.Bomb) {
+        numberOfBombs++;
+      }
+      if (bottomRightBomb?.value === CellValue.Bomb) {
+        numberOfBombs++;
+      }
     }
   }
 
