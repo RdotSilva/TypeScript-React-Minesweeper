@@ -20,7 +20,11 @@ const Button: React.FC<ButtonProps> = ({ row, col, state, value }) => {
         );
       }
     } else if (state === CellState.Flagged) {
-      // TODO: Display flag emoji here
+      return (
+        <span role="img" aria-label="flag">
+          🚩
+        </span>
+      );
     }
     return null;
   };
