@@ -91,6 +91,8 @@ export const generateCells = (): Cell[][] => {
       if (bottomRightBomb?.value === CellValue.Bomb) {
         numberOfBombs++;
       }
+
+      // TODO: Change cell image based on number of bombs
     }
   }
 
