@@ -10,7 +10,7 @@ export const generateCells = (): Cell[][] => {
     for (let col = 0; col < MAX_COLS; col++) {
       cells[row].push({
         value: CellValue.None,
-        state: CellState.Open,
+        state: CellState.Visible, // TODO: Make this open in the future
       });
     }
   }
@@ -35,6 +35,17 @@ export const generateCells = (): Cell[][] => {
         })
       );
       bombsPlaced++;
+    }
+  }
+
+  // Calculate the number of bombs for each cell
+  for (let rowIndex = 0; rowIndex < MAX_ROWS; rowIndex++) {
+    for (let colIndex = 0; colIndex < MAX_COLS; colIndex++) {
+      const currentCell = cells[rowIndex][colIndex];
+      if (currentCell.value === CellValue.Bomb) {
+        continue;
+      }
+      let numberOfBombs = 0;
     }
   }
 
