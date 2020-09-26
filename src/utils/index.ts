@@ -46,6 +46,25 @@ export const generateCells = (): Cell[][] => {
         continue;
       }
       let numberOfBombs = 0;
+      const topLeftBomb =
+        rowIndex > 0 && colIndex > 0 ? cells[rowIndex - 1][colIndex - 1] : null;
+      const topBomb = rowIndex > 0 ? cells[rowIndex - 1][colIndex] : null;
+      const topRightBomb =
+        rowIndex > 0 && colIndex < MAX_COLS - 1
+          ? cells[rowIndex - 1][colIndex + 1]
+          : null;
+      const leftBomb = colIndex > 0 ? cells[rowIndex][colIndex - 1] : null;
+      const rightBomb = colIndex < MAX_COLS - 1 ? cells[rowIndex + 1] : null;
+      const bottomLeftBomb =
+        rowIndex < MAX_ROWS - 1 && colIndex > 0
+          ? cells[rowIndex + 1][colIndex - 1]
+          : null;
+      const bottomBomb =
+        rowIndex < MAX_ROWS - 1 ? cells[rowIndex + 1][colIndex] : null;
+      const bottomRightBomb =
+        rowIndex < MAX_ROWS - 1 && colIndex < MAX_COLS - 1
+          ? cells[rowIndex + 1][colIndex + 1]
+          : null;
     }
   }
 
