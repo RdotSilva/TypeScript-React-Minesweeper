@@ -10,7 +10,7 @@ export const generateCells = (): Cell[][] => {
     for (let col = 0; col < MAX_COLS; col++) {
       cells[row].push({
         value: CellValue.None,
-        state: CellState.Visible, // TODO: Make this open in the future
+        state: CellState.Open,
       });
     }
   }
