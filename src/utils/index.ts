@@ -92,7 +92,12 @@ export const generateCells = (): Cell[][] => {
         numberOfBombs++;
       }
 
-      // TODO: Change cell image based on number of bombs
+      if (numberOfBombs > 0) {
+        cells[rowIndex][colIndex] = {
+          ...currentCell,
+          value: numberOfBombs,
+        };
+      }
     }
   }
 
