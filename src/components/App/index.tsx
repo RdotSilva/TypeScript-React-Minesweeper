@@ -9,6 +9,7 @@ const App: React.FC = () => {
   const [cells, setCells] = useState<Cell[][]>(generateCells());
   const [face, setFace] = useState<Face>(Face.Smile);
   const [time, setTime] = useState<number>(0);
+  const [live, setLive] = useState<boolean>(false);
 
   useEffect(() => {
     const handleMouseDown = (): void => {
@@ -49,7 +50,7 @@ const App: React.FC = () => {
         <div className="Face">
           <span role="img" aria-label="face"></span>
         </div>
-        <NumberDisplay value={23} />
+        <NumberDisplay value={time} />
       </div>
       <div className="Body">{renderCells()}</div>
     </div>
