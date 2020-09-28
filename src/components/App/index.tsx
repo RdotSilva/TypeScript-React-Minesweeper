@@ -3,11 +3,12 @@ import { generateCells } from "../../utils";
 import NumberDisplay from "../NumberDisplay";
 import "./App.scss";
 import Button from "./../Button/index";
-import { Face } from "../../types";
+import { Face, Cell } from "../../types";
 
 const App: React.FC = () => {
-  const [cells, setCells] = useState(generateCells());
-  const [face, setFace] = useState(Face.Smile);
+  const [cells, setCells] = useState<Cell[][]>(generateCells());
+  const [face, setFace] = useState<Face>(Face.Smile);
+  const [time, setTime] = useState<number>(0);
 
   useEffect(() => {
     const handleMouseDown = (): void => {
