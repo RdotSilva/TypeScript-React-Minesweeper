@@ -10,6 +10,14 @@ const App: React.FC = () => {
   const [face, setFace] = useState(Face.Smile);
 
   useEffect(() => {
+    const handleMouseDown = (): void => {
+      setFace(Face.Oh);
+    };
+
+    const handleMouseUp = (): void => {
+      setFace(Face.Smile);
+    };
+
     window.addEventListener("mousedown", handleMouseDown);
     window.addEventListener("mouseup", handleMouseUp);
   }, []);
