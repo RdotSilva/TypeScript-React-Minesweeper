@@ -39,6 +39,15 @@ const App: React.FC = () => {
     }
   }, [live, time]);
 
+  // Reset game and clear board
+  const handleFaceClick = (): void => {
+    if (live) {
+      setLive(false);
+      setTime(0);
+      setCells(generateCells);
+    }
+  };
+
   const renderCells = (): React.ReactNode => {
     return cells.map((row, rowIndex) =>
       row.map((cell, colIndex) => (
@@ -58,7 +67,7 @@ const App: React.FC = () => {
     <div className="App">
       <div className="Header">
         <NumberDisplay value={0} />
-        <div className="Face">
+        <div className="Face" onClick={handleFaceClick}>
           <span role="img" aria-label="face"></span>
         </div>
         <NumberDisplay value={time} />
