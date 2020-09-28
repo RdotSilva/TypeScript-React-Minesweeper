@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { generateCells } from "../../utils";
 import NumberDisplay from "../NumberDisplay";
 import "./App.scss";
@@ -7,6 +7,7 @@ import { Face } from "../../types";
 
 const App: React.FC = () => {
   const [cells, setCells] = useState(generateCells());
+  const [face, setFace] = useState(Face.Smile);
 
   const renderCells = (): React.ReactNode => {
     return cells.map((row, rowIndex) =>
