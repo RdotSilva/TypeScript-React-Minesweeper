@@ -9,6 +9,11 @@ const App: React.FC = () => {
   const [cells, setCells] = useState(generateCells());
   const [face, setFace] = useState(Face.Smile);
 
+  useEffect(() => {
+    window.addEventListener("mousedown", handleMouseDown);
+    window.addEventListener("mouseup", handleMouseUp);
+  }, []);
+
   const renderCells = (): React.ReactNode => {
     return cells.map((row, rowIndex) =>
       row.map((cell, colIndex) => (
@@ -28,9 +33,7 @@ const App: React.FC = () => {
       <div className="Header">
         <NumberDisplay value={0} />
         <div className="Face">
-          <span role="img" aria-label="face">
-            {Face.Smile}
-          </span>
+          <span role="img" aria-label="face"></span>
         </div>
         <NumberDisplay value={23} />
       </div>
