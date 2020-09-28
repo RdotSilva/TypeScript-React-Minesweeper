@@ -55,6 +55,8 @@ const App: React.FC = () => {
     }
   };
 
+  // TODO: Add handleCellContext method to handle right click
+
   const renderCells = (): React.ReactNode => {
     return cells.map((row, rowIndex) =>
       row.map((cell, colIndex) => (
