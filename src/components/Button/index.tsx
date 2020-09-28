@@ -3,13 +3,13 @@ import { CellState, CellValue } from "../../types";
 import "./Button.scss";
 
 interface ButtonProps {
-  row: number;
   col: number;
+  onClick(rowParam: number, colParam: number): (...args: any[]) => void;
   state: CellState;
   value: CellValue;
 }
 
-const Button: React.FC<ButtonProps> = ({ row, col, state, value }) => {
+const Button: React.FC<ButtonProps> = ({ row, col, onClick, state, value }) => {
   const renderContent = (): React.ReactNode => {
     if (state === CellState.Visible) {
       if (value === CellValue.Bomb) {
