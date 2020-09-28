@@ -29,11 +29,22 @@ const App: React.FC = () => {
     };
   }, []);
 
+  // Increment the timer if player is alive
+  useEffect(() => {
+    if (live) {
+      const timer = setInterval(() => setTime(time + 1), 1000);
+      return () => {
+        clearInterval(timer);
+      };
+    }
+  }, [live, time]);
+
   const renderCells = (): React.ReactNode => {
     return cells.map((row, rowIndex) =>
       row.map((cell, colIndex) => (
         <Button
           key={`${rowIndex}-${colIndex}`}
+          onClick={handleCellClick}
           state={cell.state}
           value={cell.value}
           row={rowIndex}
