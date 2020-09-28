@@ -48,12 +48,20 @@ const App: React.FC = () => {
     }
   };
 
+  const handleCellClick = (rowParam: number, colParam: number) => (): void => {
+    // Start game
+    if (!live) {
+      setLive(true);
+    }
+  };
+
   const renderCells = (): React.ReactNode => {
     return cells.map((row, rowIndex) =>
       row.map((cell, colIndex) => (
         <Button
           key={`${rowIndex}-${colIndex}`}
           onClick={handleCellClick}
+          onContext={handleCellContext}
           state={cell.state}
           value={cell.value}
           row={rowIndex}
