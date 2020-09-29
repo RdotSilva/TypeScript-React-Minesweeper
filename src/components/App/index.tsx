@@ -60,7 +60,19 @@ const App: React.FC = () => {
   ): void => {
     e.preventDefault();
 
-    console.log("We are in right click context");
+    if (!live) {
+      return;
+    }
+
+    const currentCells = cells.slice();
+    const currentCell = cells[rowParam][colParam];
+
+    if (currentCell.state === CellState.Visible) {
+      return;
+    } else if (currentCell.state === CellState.Open) {
+      currentCells[rowParam][colParam].state = CellState.Flagged;
+      setCells(currentCells);
+    }
   };
 
   const renderCells = (): React.ReactNode => {
