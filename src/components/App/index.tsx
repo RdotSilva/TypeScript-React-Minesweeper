@@ -31,7 +31,7 @@ const App: React.FC = () => {
 
   // Increment the timer if player is alive
   useEffect(() => {
-    if (live) {
+    if (live && time < 999) {
       const timer = setInterval(() => setTime(time + 1), 1000);
       return () => {
         clearInterval(timer);
@@ -94,9 +94,11 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <div className="Header">
-        <NumberDisplay value={0} />
+        <NumberDisplay value={bombCounter} />
         <div className="Face" onClick={handleFaceClick}>
-          <span role="img" aria-label="face"></span>
+          <span role="img" aria-label="face">
+            {face}
+          </span>
         </div>
         <NumberDisplay value={time} />
       </div>
