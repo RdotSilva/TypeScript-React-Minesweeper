@@ -10,6 +10,7 @@ const App: React.FC = () => {
   const [face, setFace] = useState<Face>(Face.Smile);
   const [time, setTime] = useState<number>(0);
   const [live, setLive] = useState<boolean>(false);
+  const [bombCounter, setBombCounter] = useState<number>(10);
 
   useEffect(() => {
     const handleMouseDown = (): void => {
@@ -72,6 +73,7 @@ const App: React.FC = () => {
     } else if (currentCell.state === CellState.Open) {
       currentCells[rowParam][colParam].state = CellState.Flagged;
       setCells(currentCells);
+      setBombCounter(bombCounter - 1);
     }
   };
 
