@@ -3,7 +3,7 @@ import { generateCells } from "../../utils";
 import NumberDisplay from "../NumberDisplay";
 import "./App.scss";
 import Button from "./../Button/index";
-import { Face, Cell } from "../../types";
+import { Face, Cell, CellState } from "../../types";
 
 const App: React.FC = () => {
   const [cells, setCells] = useState<Cell[][]>(generateCells());
@@ -55,7 +55,13 @@ const App: React.FC = () => {
     }
   };
 
-  // TODO: Add handleCellContext method to handle right click
+  const handleCellContext = (rowParam: number, colParam: number) => (
+    e: React.MouseEvent<HTMLDivElement>
+  ): void => {
+    e.preventDefault();
+
+    console.log("We are in right click context");
+  };
 
   const renderCells = (): React.ReactNode => {
     return cells.map((row, rowIndex) =>
