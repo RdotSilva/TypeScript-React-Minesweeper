@@ -52,6 +52,7 @@ const App: React.FC = () => {
   const handleCellClick = (rowParam: number, colParam: number) => (): void => {
     // Start game
     if (!live) {
+      // TODO: Make sure user cannot click bomb on game start
       setLive(true);
     }
   };
