@@ -59,8 +59,14 @@ const App: React.FC = () => {
     const currentCell = cells[rowParam][colParam];
     const newCells = cells.slice();
 
+    if (currentCell.state === CellState.Flagged) {
+      return;
+    }
+
     if (currentCell.value === CellValue.bomb) {
       // TODO: Take care of bomb click
+    } else if (currentCell.value === CellValue.None) {
+      // TODO: Spread empty cells if no bombs present
     }
   };
 
