@@ -3,7 +3,7 @@ import { generateCells } from "../../utils";
 import NumberDisplay from "../NumberDisplay";
 import "./App.scss";
 import Button from "./../Button/index";
-import { Face, Cell, CellState } from "../../types";
+import { Face, Cell, CellState, CellValue } from "../../types";
 
 const App: React.FC = () => {
   const [cells, setCells] = useState<Cell[][]>(generateCells());
@@ -54,6 +54,13 @@ const App: React.FC = () => {
     if (!live) {
       // TODO: Make sure user cannot click bomb on game start
       setLive(true);
+    }
+
+    const currentCell = cells[rowParam][colParam];
+    const newCells = cells.slice();
+
+    if (currentCell.value === CellValue.bomb) {
+      // TODO: Take care of bomb click
     }
   };
 
