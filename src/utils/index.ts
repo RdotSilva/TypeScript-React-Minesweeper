@@ -1,11 +1,22 @@
 import { MAX_COLS, MAX_ROWS, NO_OF_BOMBS } from "../constants";
 import { Cell, CellState, CellValue } from "../types";
 
+interface CellObject {
+  topLeftCell: Cell | null;
+  topCell: Cell | null;
+  topRightCell: Cell | null;
+  leftCell: Cell | null;
+  rightCell: Cell | null;
+  bottomLeftCell: Cell | null;
+  bottomCell: Cell | null;
+  bottomRightCell: Cell | null;
+}
+
 const grabAllAdjacentCells = (
   cells: Cell[][],
   rowParam: number,
   colParam: number
-): => {
+): CellObject => {
   const topLeftCell =
     rowParam > 0 && colParam > 0 ? cells[rowParam - 1][colParam - 1] : null;
   const topCell = rowParam > 0 ? cells[rowParam - 1][colParam] : null;
