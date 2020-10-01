@@ -94,6 +94,8 @@ export const generateCells = (): Cell[][] => {
       if (currentCell.value === CellValue.Bomb) {
         continue;
       }
+
+      // TODO: Add in cell destructuring
       let numberOfBombs = 0;
 
       if (topLeftCell?.value === CellValue.Bomb) {
