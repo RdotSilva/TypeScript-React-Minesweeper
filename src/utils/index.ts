@@ -103,3 +103,7 @@ export const generateCells = (): Cell[][] => {
 
   return cells;
 };
+
+export const openMultipleCells = (cells: Cell[][], rowParam: number, colParam: number): Cell[][] {
+  
+}
