@@ -1,6 +1,12 @@
 import { MAX_COLS, MAX_ROWS, NO_OF_BOMBS } from "../constants";
 import { Cell, CellState, CellValue } from "../types";
 
+const grabAllAdjacentCells = (
+  cells: Cell[][],
+  rowParam: number,
+  colParam: number
+) => {};
+
 export const generateCells = (): Cell[][] => {
   let cells: Cell[][] = [];
   let bombsPlaced = 0;
@@ -108,4 +114,9 @@ export const openMultipleCells = (
   cells: Cell[][],
   rowParam: number,
   colParam: number
-): Cell[][] => {};
+): Cell[][] => {
+  let newCells = cells.slice();
+  const currentCell = cells[rowParam][colParam];
+
+  newCells[rowParam][colParam].state = CellState.Open;
+};
