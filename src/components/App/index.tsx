@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { generateCells } from "../../utils";
+import { generateCells, openMultipleCells } from "../../utils";
 import NumberDisplay from "../NumberDisplay";
 import "./App.scss";
 import Button from "./../Button/index";
@@ -57,7 +57,7 @@ const App: React.FC = () => {
     }
 
     const currentCell = cells[rowParam][colParam];
-    const newCells = cells.slice();
+    let newCells = cells.slice();
 
     if ([CellState.Flagged, CellState.Visible].includes(currentCell.state)) {
       return;
@@ -66,7 +66,8 @@ const App: React.FC = () => {
     if (currentCell.value === CellValue.Bomb) {
       // TODO: Take care of bomb click
     } else if (currentCell.value === CellValue.None) {
-      // TODO: Spread empty cells if no bombs present
+      // Spread empty cells if no bombs present
+      newCells = openMultipleCells(newCells, rowParam, colParam);
     } else {
       newCells[rowParam][colParam].state = CellState.Visible;
       setCells(newCells);
