@@ -153,5 +153,25 @@ export const openMultipleCells = (
   let newCells = cells.slice();
   const currentCell = cells[rowParam][colParam];
 
-  newCells[rowParam][colParam].state = CellState.Open;
+  const {
+    topLeftCell,
+    topCell,
+    topRightCell,
+    leftCell,
+    rightCell,
+    bottomLeftCell,
+    bottomCell,
+    bottomRightCell,
+  } = grabAllAdjacentCells(cells, rowParam, colParam);
+
+  if (
+    topLeftCell?.state === CellState.Open &&
+    topLeftCell.value !== CellValue.Bomb
+  ) {
+    if (topLeftCell.value === CellValue.None) {
+      newCells = openMultipleCells(newCells, rowParam - 1, colParam - 1);
+    } else {
+      newCells[rowParam - 1][colParam - 1].state = CellState.Visible;
+    }
+  }
 };
