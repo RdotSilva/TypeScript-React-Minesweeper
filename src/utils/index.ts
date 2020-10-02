@@ -174,4 +174,12 @@ export const openMultipleCells = (
       newCells[rowParam - 1][colParam - 1].state = CellState.Visible;
     }
   }
+
+  if (topCell?.state === CellState.Open && topCell.value !== CellValue.Bomb) {
+    if (topCell.value === CellValue.None) {
+      newCells = openMultipleCells(newCells, rowParam - 1, colParam);
+    } else {
+      newCells[rowParam - 1][colParam].state = CellState.Visible;
+    }
+  }
 };
