@@ -95,8 +95,18 @@ export const generateCells = (): Cell[][] => {
         continue;
       }
 
-      // TODO: Add in cell destructuring
       let numberOfBombs = 0;
+
+      const {
+        topLeftCell,
+        topCell,
+        topRightCell,
+        leftCell,
+        rightCell,
+        bottomLeftCell,
+        bottomCell,
+        bottomRightCell,
+      } = grabAllAdjacentCells(cells, rowIndex, colIndex);
 
       if (topLeftCell?.value === CellValue.Bomb) {
         numberOfBombs++;
