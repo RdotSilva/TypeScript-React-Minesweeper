@@ -75,6 +75,8 @@ const App: React.FC = () => {
 
     if (currentCell.value === CellValue.Bomb) {
       setHasLost(true);
+      newCells = showAllBombs();
+      setCells(newCells);
     } else if (currentCell.value === CellValue.None) {
       // Spread empty cells if no bombs present
       newCells = openMultipleCells(newCells, rowParam, colParam);
