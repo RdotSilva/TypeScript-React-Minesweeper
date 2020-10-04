@@ -150,7 +150,6 @@ export const openMultipleCells = (
   rowParam: number,
   colParam: number
 ): Cell[][] => {
-  let newCells = cells.slice();
   const currentCell = cells[rowParam][colParam];
 
   if (
@@ -159,6 +158,8 @@ export const openMultipleCells = (
   ) {
     return cells;
   }
+  let newCells = cells.slice();
+  newCells[rowParam][colParam].state = CellState.Visible;
 
   const {
     topLeftCell,
@@ -206,6 +207,17 @@ export const openMultipleCells = (
       newCells = openMultipleCells(newCells, rowParam, colParam - 1);
     } else {
       newCells[rowParam][colParam - 1].state = CellState.Visible;
+    }
+  }
+
+  if (
+    rightCell?.state === CellState.Open &&
+    rightCell.value !== CellValue.Bomb
+  ) {
+    if (rightCell.value === CellValue.None) {
+      newCells = openMultipleCells(newCells, rowParam, colParam + 1);
+    } else {
+      newCells[rowParam][colParam + 1].state = CellState.Visible;
     }
   }
 
