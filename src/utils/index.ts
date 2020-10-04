@@ -223,4 +223,15 @@ export const openMultipleCells = (
       newCells[rowParam + 1][colParam].state = CellState.Visible;
     }
   }
+
+  if (
+    bottomRightCell?.state === CellState.Open &&
+    bottomRightCell.value !== CellValue.Bomb
+  ) {
+    if (bottomRightCell.value === CellValue.None) {
+      newCells = openMultipleCells(newCells, rowParam + 1, colParam + 1);
+    } else {
+      newCells[rowParam + 1][colParam + 1].state = CellState.Visible;
+    }
+  }
 };
