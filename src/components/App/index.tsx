@@ -41,12 +41,20 @@ const App: React.FC = () => {
     }
   }, [live, time]);
 
+  useEffect(() => {
+    if (hasLost) {
+      setFace(Face.Lost);
+      setLive(false);
+    }
+  }, [hasLost]);
+
   // Reset game and clear board
   const handleFaceClick = (): void => {
     if (live) {
       setLive(false);
       setTime(0);
       setCells(generateCells);
+      setHasLost(false);
     }
   };
 
@@ -65,7 +73,7 @@ const App: React.FC = () => {
     }
 
     if (currentCell.value === CellValue.Bomb) {
-      // TODO: Take care of bomb click
+      setHasLost(true);
     } else if (currentCell.value === CellValue.None) {
       // Spread empty cells if no bombs present
       newCells = openMultipleCells(newCells, rowParam, colParam);
