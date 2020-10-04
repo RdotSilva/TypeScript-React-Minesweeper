@@ -212,4 +212,15 @@ export const openMultipleCells = (
       newCells[rowParam + 1][colParam - 1].state = CellState.Visible;
     }
   }
+
+  if (
+    bottomCell?.state === CellState.Open &&
+    bottomCell.value !== CellValue.Bomb
+  ) {
+    if (bottomCell.value === CellValue.None) {
+      newCells = openMultipleCells(newCells, rowParam + 1, colParam);
+    } else {
+      newCells[rowParam + 1][colParam].state = CellState.Visible;
+    }
+  }
 };
