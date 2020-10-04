@@ -11,6 +11,7 @@ const App: React.FC = () => {
   const [time, setTime] = useState<number>(0);
   const [live, setLive] = useState<boolean>(false);
   const [bombCounter, setBombCounter] = useState<number>(10);
+  const [hasLost, setHasLost] = useState<boolean>(false);
 
   useEffect(() => {
     const handleMouseDown = (): void => {
@@ -68,6 +69,7 @@ const App: React.FC = () => {
     } else if (currentCell.value === CellValue.None) {
       // Spread empty cells if no bombs present
       newCells = openMultipleCells(newCells, rowParam, colParam);
+      setCells(newCells);
     } else {
       newCells[rowParam][colParam].state = CellState.Visible;
       setCells(newCells);
