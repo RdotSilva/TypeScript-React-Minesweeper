@@ -41,6 +41,7 @@ const App: React.FC = () => {
     }
   }, [live, time]);
 
+  // Check if user has lost the game and if so stop the game
   useEffect(() => {
     if (hasLost) {
       setFace(Face.Lost);
@@ -122,6 +123,21 @@ const App: React.FC = () => {
           col={colIndex}
         />
       ))
+    );
+  };
+
+  const showAllBombs = (): Cell[][] => {
+    const currentCells = cells.slice();
+    return currentCells.map((row) =>
+      row.map((cell) => {
+        if (cell.value === CellValue.Bomb) {
+          return {
+            ...cell,
+            state: CellState.Visible,
+          };
+        }
+        return cell;
+      })
     );
   };
 
