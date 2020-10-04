@@ -153,6 +153,13 @@ export const openMultipleCells = (
   let newCells = cells.slice();
   const currentCell = cells[rowParam][colParam];
 
+  if (
+    currentCell.state === CellState.Visible ||
+    currentCell.state === CellState.Flagged
+  ) {
+    return cells;
+  }
+
   const {
     topLeftCell,
     topCell,
@@ -234,4 +241,6 @@ export const openMultipleCells = (
       newCells[rowParam + 1][colParam + 1].state = CellState.Visible;
     }
   }
+
+  return newCells;
 };
