@@ -51,12 +51,10 @@ const App: React.FC = () => {
 
   // Reset game and clear board
   const handleFaceClick = (): void => {
-    if (live) {
-      setLive(false);
-      setTime(0);
-      setCells(generateCells);
-      setHasLost(false);
-    }
+    setLive(false);
+    setTime(0);
+    setCells(generateCells);
+    setHasLost(false);
   };
 
   const handleCellClick = (rowParam: number, colParam: number) => (): void => {
