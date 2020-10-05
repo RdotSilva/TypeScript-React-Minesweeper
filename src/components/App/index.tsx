@@ -69,14 +69,16 @@ const App: React.FC = () => {
   };
 
   const handleCellClick = (rowParam: number, colParam: number) => (): void => {
-    // Start game
-    if (!live) {
-      // TODO: Make sure user cannot click bomb on game start
-      setLive(true);
-    }
-
     const currentCell = cells[rowParam][colParam];
     let newCells = cells.slice();
+
+    // Start game
+    if (!live) {
+      if (currentCell.value === CellValue.Bomb) {
+        // TODO: Shuffle board if bomb is clicked
+      }
+      setLive(true);
+    }
 
     if ([CellState.Flagged, CellState.Visible].includes(currentCell.state)) {
       return;
