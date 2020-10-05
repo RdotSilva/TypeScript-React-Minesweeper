@@ -2,7 +2,12 @@ import React from "react";
 
 import "./ScoreBoard.scss";
 
-const ScoreBoard: React.FC = () => {
+interface ScoreBoardProps {
+  topPlayer: string;
+  bottomPlayer: string;
+}
+
+const ScoreBoard: React.FC<ScoreBoardProps> = () => {
   return (
     <div>
       <div className="Top">Top Player</div>
