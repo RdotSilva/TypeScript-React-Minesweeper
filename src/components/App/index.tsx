@@ -128,6 +128,10 @@ const App: React.FC = () => {
     );
   };
 
+  /**
+   * Show all bombs on screen
+   * @returns {Cell[][]}
+   */
   const showAllBombs = (): Cell[][] => {
     const currentCells = cells.slice();
     return currentCells.map((row) =>
