@@ -111,6 +111,20 @@ const App: React.FC = () => {
       }
     }
 
+    if (!safeOpenCellsExists) {
+      newCells = newCells.map((row) =>
+        row.map((cell) => {
+          if (cell.value === CellValue.Bomb) {
+            return {
+              ...cell,
+              state: CellState.Flagged,
+            };
+          }
+          return cell;
+        })
+      );
+      setHasWon(true);
+    }
     setCells(newCells);
   };
 
