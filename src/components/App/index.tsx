@@ -56,6 +56,7 @@ const App: React.FC = () => {
     setTime(0);
     setCells(generateCells);
     setHasLost(false);
+    setHasWon(false);
   };
 
   const handleCellClick = (rowParam: number, colParam: number) => (): void => {
