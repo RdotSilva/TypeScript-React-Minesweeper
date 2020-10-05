@@ -50,6 +50,14 @@ const App: React.FC = () => {
     }
   }, [hasLost]);
 
+  // Check if user has won game
+  useEffect(() => {
+    if (hasWon) {
+      setLive(false);
+      setFace(Face.Won);
+    }
+  }, [hasWon]);
+
   // Reset game and clear board
   const handleFaceClick = (): void => {
     setLive(false);
