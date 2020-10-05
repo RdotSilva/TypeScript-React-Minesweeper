@@ -4,6 +4,7 @@ import NumberDisplay from "../NumberDisplay";
 import "./App.scss";
 import Button from "./../Button/index";
 import { Face, Cell, CellState, CellValue } from "../../types";
+import { MAX_COLS, MAX_ROWS } from "../../constants";
 
 const App: React.FC = () => {
   const [cells, setCells] = useState<Cell[][]>(generateCells());
@@ -86,14 +87,31 @@ const App: React.FC = () => {
       newCells[rowParam][colParam].red = true;
       newCells = showAllBombs();
       setCells(newCells);
+      return;
     } else if (currentCell.value === CellValue.None) {
       // Spread empty cells if no bombs present
       newCells = openMultipleCells(newCells, rowParam, colParam);
-      setCells(newCells);
     } else {
       newCells[rowParam][colParam].state = CellState.Visible;
-      setCells(newCells);
     }
+    // Check to see if you have won
+    let safeOpenCellsExists = false;
+
+    for (let row = 0; row < MAX_ROWS; row++) {
+      for (let col = 0; col < MAX_COLS; col++) {
+        const currentCell = newCells[row][col];
+
+        if (
+          currentCell.value !== CellValue.Bomb &&
+          currentCell.state === CellState.Open
+        ) {
+          safeOpenCellsExists = true;
+          break;
+        }
+      }
+    }
+
+    setCells(newCells);
   };
 
   const handleCellContext = (rowParam: number, colParam: number) => (
