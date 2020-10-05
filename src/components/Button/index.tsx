@@ -2,6 +2,10 @@ import React from "react";
 import { CellState, CellValue } from "../../types";
 import "./Button.scss";
 
+/**
+ * Represents the props that a button should have
+ * @interface ButtonProps
+ */
 interface ButtonProps {
   col: number;
   onClick(rowParam: number, colParam: number): (...args: any[]) => void;
