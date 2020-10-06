@@ -84,7 +84,7 @@ const App: React.FC = () => {
       setLive(true);
     }
 
-    const currentCell = cells[rowParam][colParam];
+    const currentCell = newCells[rowParam][colParam];
 
     if ([CellState.Flagged, CellState.Visible].includes(currentCell.state)) {
       return;
