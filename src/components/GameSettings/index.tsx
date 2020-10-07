@@ -7,10 +7,20 @@ const GameSettings: React.FC = () => {
   const [height, setHeight] = useState<number>(9);
   const [mines, setMines] = useState<number>(10);
 
-  const onClickBeginner = () => {
-    setWidth(9);
-    setHeight(9);
-    setMines(10);
+  const onClickDifficulty = (e) => {
+    if (e.target.innerText === "Beginner") {
+      setWidth(9);
+      setHeight(9);
+      setMines(10);
+    } else if (e.target.innerText === "Intermediate") {
+      setWidth(16);
+      setHeight(16);
+      setMines(40);
+    } else {
+      setWidth(30);
+      setHeight(16);
+      setMines(99);
+    }
   };
 
   return (
@@ -20,11 +30,15 @@ const GameSettings: React.FC = () => {
         <p>Width: {width}</p>
         <p>Mines: {mines}</p>
       </div>
-      <button className="DifficultyButton" onClick={onClickBeginner}>
+      <button className="DifficultyButton" onClick={onClickDifficulty}>
         Beginner
       </button>
-      <button className="DifficultyButton">Intermediate</button>
-      <button className="DifficultyButton">Advanced</button>
+      <button className="DifficultyButton" onClick={onClickDifficulty}>
+        Intermediate
+      </button>
+      <button className="DifficultyButton" onClick={onClickDifficulty}>
+        Advanced
+      </button>
     </div>
   );
 };
