@@ -5,6 +5,7 @@ import "./App.scss";
 import Button from "./../Button/index";
 import { Face, Cell, CellState, CellValue } from "../../types";
 import { MAX_COLS, MAX_ROWS } from "../../constants";
+import GameSettings from "../GameSettings";
 
 const App: React.FC = () => {
   const [cells, setCells] = useState<Cell[][]>(generateCells());
@@ -199,6 +200,7 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
+      <GameSettings />
       <div className="Header">
         <NumberDisplay value={bombCounter} />
         <div className="Face" onClick={handleFaceClick}>
