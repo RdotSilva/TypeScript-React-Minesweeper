@@ -7,6 +7,12 @@ const GameSettings: React.FC = () => {
   const [height, setHeight] = useState<number>(9);
   const [mines, setMines] = useState<number>(10);
 
+  const onClickBeginner = () => {
+    setWidth(9);
+    setHeight(9);
+    setMines(10);
+  };
+
   return (
     <div className="GameSettings">
       <div className="TopBar">
@@ -14,7 +20,9 @@ const GameSettings: React.FC = () => {
         <p>Width: {width}</p>
         <p>Mines: {mines}</p>
       </div>
-      <button className="DifficultyButton">Beginner</button>
+      <button className="DifficultyButton" onClick={onClickBeginner}>
+        Beginner
+      </button>
       <button className="DifficultyButton">Intermediate</button>
       <button className="DifficultyButton">Advanced</button>
     </div>
