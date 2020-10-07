@@ -30,15 +30,17 @@ const GameSettings: React.FC = () => {
         <p>Width: {width}</p>
         <p>Mines: {mines}</p>
       </div>
-      <button className="DifficultyButton" onClick={onClickDifficulty}>
-        Beginner
-      </button>
-      <button className="DifficultyButton" onClick={onClickDifficulty}>
-        Intermediate
-      </button>
-      <button className="DifficultyButton" onClick={onClickDifficulty}>
-        Advanced
-      </button>
+      <div className="DifficultyButtons">
+        <button className="DifficultyButton" onClick={onClickDifficulty}>
+          Beginner
+        </button>
+        <button className="DifficultyButton" onClick={onClickDifficulty}>
+          Intermediate
+        </button>
+        <button className="DifficultyButton" onClick={onClickDifficulty}>
+          Advanced
+        </button>
+      </div>
     </div>
   );
 };
