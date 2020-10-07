@@ -1,8 +1,18 @@
+@import "../../styles/index.scss";
+
 .GameSettings {
+  @include borders();
   display: grid;
 }
 
 .TopBar {
   display: flex;
   justify-content: space-between;
+  margin: 20px;
+}
+
+.DifficultyButtons {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
 }
