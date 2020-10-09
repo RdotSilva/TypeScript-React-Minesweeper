@@ -8,6 +8,8 @@ const GameBoard: React.FC = () => {
   const context = useContext(gameSettingsContext);
   const { height, width, mines } = context;
 
+  // TODO: Move grabAdjacentCells method
+
   const generateCells = (): Cell[][] => {
     let cells: Cell[][] = [];
     let bombsPlaced = 0;
