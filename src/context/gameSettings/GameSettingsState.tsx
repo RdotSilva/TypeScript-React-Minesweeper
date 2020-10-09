@@ -11,5 +11,14 @@ const GameSettingsState = (props) => {
 
   // TODO: Add dispatch for CHANGE_DIFFICULTY
 
+  const [state, dispatch] = useReducer(gameSettingsReducer, initialState);
+
+  const changeDifficulty = (difficultySettings) => {
+    dispatch({
+      type: CHANGE_DIFFICULTY,
+      payload: difficultySettings,
+    });
+  };
+
   // TODO: Return GameSettingsContext.Provider
 };
