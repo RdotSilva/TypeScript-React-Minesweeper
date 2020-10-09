@@ -1,5 +1,6 @@
 import React, { useReducer } from "react";
 import { CHANGE_DIFFICULTY } from "../types";
+import gameSettingsContext from "./gameSettingsContext";
 import gameSettingsReducer from "./gameSettingsReducer";
 
 const GameSettingsState = (props) => {
@@ -20,5 +21,16 @@ const GameSettingsState = (props) => {
     });
   };
 
-  // TODO: Return GameSettingsContext.Provider
+  return (
+    <gameSettingsContext.Provider
+      value={{
+        width: state.width,
+        height: state.height,
+        mines: state.mines,
+        changeDifficulty,
+      }}
+    >
+      {props.children}
+    </gameSettingsContext.Provider>
+  );
 };
