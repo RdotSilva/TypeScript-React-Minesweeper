@@ -154,6 +154,121 @@ const GameBoard: React.FC = () => {
     return cells;
   };
 
+  const openMultipleCells = (
+    cells: Cell[][],
+    rowParam: number,
+    colParam: number
+  ): Cell[][] => {
+    const currentCell = cells[rowParam][colParam];
+
+    if (
+      currentCell.state === CellState.Visible ||
+      currentCell.state === CellState.Flagged
+    ) {
+      return cells;
+    }
+    let newCells = cells.slice();
+    newCells[rowParam][colParam].state = CellState.Visible;
+
+    const {
+      topLeftCell,
+      topCell,
+      topRightCell,
+      leftCell,
+      rightCell,
+      bottomLeftCell,
+      bottomCell,
+      bottomRightCell,
+    } = grabAllAdjacentCells(cells, rowParam, colParam);
+
+    if (
+      topLeftCell?.state === CellState.Open &&
+      topLeftCell.value !== CellValue.Bomb
+    ) {
+      if (topLeftCell.value === CellValue.None) {
+        newCells = openMultipleCells(newCells, rowParam - 1, colParam - 1);
+      } else {
+        newCells[rowParam - 1][colParam - 1].state = CellState.Visible;
+      }
+    }
+
+    if (topCell?.state === CellState.Open && topCell.value !== CellValue.Bomb) {
+      if (topCell.value === CellValue.None) {
+        newCells = openMultipleCells(newCells, rowParam - 1, colParam);
+      } else {
+        newCells[rowParam - 1][colParam].state = CellState.Visible;
+      }
+    }
+
+    if (
+      topRightCell?.state === CellState.Open &&
+      topRightCell.value !== CellValue.Bomb
+    ) {
+      if (topRightCell.value === CellValue.None) {
+        newCells = openMultipleCells(newCells, rowParam - 1, colParam + 1);
+      } else {
+        newCells[rowParam - 1][colParam + 1].state = CellState.Visible;
+      }
+    }
+
+    if (
+      leftCell?.state === CellState.Open &&
+      leftCell.value !== CellValue.Bomb
+    ) {
+      if (leftCell.value === CellValue.None) {
+        newCells = openMultipleCells(newCells, rowParam, colParam - 1);
+      } else {
+        newCells[rowParam][colParam - 1].state = CellState.Visible;
+      }
+    }
+
+    if (
+      rightCell?.state === CellState.Open &&
+      rightCell.value !== CellValue.Bomb
+    ) {
+      if (rightCell.value === CellValue.None) {
+        newCells = openMultipleCells(newCells, rowParam, colParam + 1);
+      } else {
+        newCells[rowParam][colParam + 1].state = CellState.Visible;
+      }
+    }
+
+    if (
+      bottomLeftCell?.state === CellState.Open &&
+      bottomLeftCell.value !== CellValue.Bomb
+    ) {
+      if (bottomLeftCell.value === CellValue.None) {
+        newCells = openMultipleCells(newCells, rowParam + 1, colParam - 1);
+      } else {
+        newCells[rowParam + 1][colParam - 1].state = CellState.Visible;
+      }
+    }
+
+    if (
+      bottomCell?.state === CellState.Open &&
+      bottomCell.value !== CellValue.Bomb
+    ) {
+      if (bottomCell.value === CellValue.None) {
+        newCells = openMultipleCells(newCells, rowParam + 1, colParam);
+      } else {
+        newCells[rowParam + 1][colParam].state = CellState.Visible;
+      }
+    }
+
+    if (
+      bottomRightCell?.state === CellState.Open &&
+      bottomRightCell.value !== CellValue.Bomb
+    ) {
+      if (bottomRightCell.value === CellValue.None) {
+        newCells = openMultipleCells(newCells, rowParam + 1, colParam + 1);
+      } else {
+        newCells[rowParam + 1][colParam + 1].state = CellState.Visible;
+      }
+    }
+
+    return newCells;
+  };
+
   return <div className="GameSettings"></div>;
 };
 
