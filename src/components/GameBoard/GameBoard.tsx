@@ -7,6 +7,11 @@ import { CellObject } from "./../../interfaces/CellObject";
 
 import "./GameBoard.scss";
 
+/**
+ *
+ *
+ * @returns
+ */
 const GameBoard: React.FC = () => {
   const [cells, setCells] = useState<Cell[][]>([[]]);
   const [face, setFace] = useState<Face>(Face.Smile);
@@ -23,7 +28,9 @@ const GameBoard: React.FC = () => {
     setCells(generateCells());
   }, []);
 
-  // Reset game and clear board
+  /**
+   * Reset the game and clear the board
+   */
   const handleFaceClick = (): void => {
     setLive(false);
     setTime(0);
@@ -32,6 +39,13 @@ const GameBoard: React.FC = () => {
     setHasWon(false);
   };
 
+  /**
+   * Find all adjacent cells
+   * @param {Cell[][]} cells - Game cells
+   * @param {number} rowParam - Row to check
+   * @param {number} colParam - Column to check
+   * @returns {CellObject} - Adjacent cells
+   */
   const grabAllAdjacentCells = (
     cells: Cell[][],
     rowParam: number,
