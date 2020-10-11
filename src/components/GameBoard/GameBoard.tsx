@@ -23,6 +23,15 @@ const GameBoard: React.FC = () => {
     setCells(generateCells());
   }, []);
 
+  // Reset game and clear board
+  const handleFaceClick = (): void => {
+    setLive(false);
+    setTime(0);
+    setCells(generateCells);
+    setHasLost(false);
+    setHasWon(false);
+  };
+
   const grabAllAdjacentCells = (
     cells: Cell[][],
     rowParam: number,
