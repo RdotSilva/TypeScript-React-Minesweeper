@@ -280,6 +280,57 @@ const GameBoard: React.FC = () => {
     return newCells;
   };
 
+  const handleCellClick = (rowParam: number, colParam: number) => (): void => {
+    let newCells = cells.slice();
+
+    // Start game
+    if (!live) {
+      let isABomb = newCells[rowParam][colParam].value === CellValue.Bomb;
+      while (isABomb) {
+        newCells = generateCells();
+        if (newCells[rowParam][colParam].value !== CellValue.Bomb) {
+          isABomb = false;
+          break;
+        }
+      }
+      setLive(true);
+    }
+
+    const currentCell = newCells[rowParam][colParam];
+
+    if ([CellState.Flagged, CellState.Visible].includes(currentCell.state)) {
+      return;
+    }
+
+    if (currentCell.value === CellValue.Bomb) {
+      setHasLost(true);
+      newCells[rowParam][colParam].red = true;
+      newCells = showAllBombs();
+      setCells(newCells);
+      return;
+    } else if (currentCell.value === CellValue.None) {
+      // Spread empty cells if no bombs present
+      newCells = openMultipleCells(newCells, rowParam, colParam);
+    } else {
+      newCells[rowParam][colParam].state = CellState.Visible;
+    }
+    // Check to see if you have won
+    let safeOpenCellsExists = false;
+
+    for (let row = 0; row < MAX_ROWS; row++) {
+      for (let col = 0; col < MAX_COLS; col++) {
+        const currentCell = newCells[row][col];
+
+        if (
+          currentCell.value !== CellValue.Bomb &&
+          currentCell.state === CellState.Open
+        ) {
+          safeOpenCellsExists = true;
+          break;
+        }
+      }
+    }
+
   return (
     <div className="App">
       <GameSettings />
