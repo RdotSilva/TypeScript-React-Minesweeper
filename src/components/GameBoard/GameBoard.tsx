@@ -1,6 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
 import gameSettingsContext from "../../context/gameSettings/gameSettingsContext";
 import { Cell, CellState, CellValue, Face } from "../../types";
+import GameSettings from "../GameSettings";
+import NumberDisplay from "../NumberDisplay";
 import { CellObject } from "./../../interfaces/CellObject";
 
 import "./GameBoard.scss";
@@ -269,7 +271,21 @@ const GameBoard: React.FC = () => {
     return newCells;
   };
 
-  return <div className="GameSettings"></div>;
+  return (
+    <div className="App">
+      <GameSettings />
+      <div className="Header">
+        <NumberDisplay value={bombCounter} />
+        <div className="Face" onClick={handleFaceClick}>
+          <span role="img" aria-label="face">
+            {face}
+          </span>
+        </div>
+        <NumberDisplay value={time} />
+      </div>
+      <div className="Body">{renderCells()}</div>
+    </div>
+  );
 };
 
 export default GameBoard;
