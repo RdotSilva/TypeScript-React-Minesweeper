@@ -317,8 +317,8 @@ const GameBoard: React.FC = () => {
     // Check to see if you have won
     let safeOpenCellsExists = false;
 
-    for (let row = 0; row < MAX_ROWS; row++) {
-      for (let col = 0; col < MAX_COLS; col++) {
+    for (let row = 0; row < width; row++) {
+      for (let col = 0; col < height; col++) {
         const currentCell = newCells[row][col];
 
         if (
@@ -330,6 +330,23 @@ const GameBoard: React.FC = () => {
         }
       }
     }
+
+    if (!safeOpenCellsExists) {
+      newCells = newCells.map((row) =>
+        row.map((cell) => {
+          if (cell.value === CellValue.Bomb) {
+            return {
+              ...cell,
+              state: CellState.Flagged,
+            };
+          }
+          return cell;
+        })
+      );
+      setHasWon(true);
+    }
+    setCells(newCells);
+  };
 
   return (
     <div className="App">
